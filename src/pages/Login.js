@@ -11,8 +11,6 @@ function Login() {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  
-
   useEffect(() => {
     if (AuthService.isAuthenticated()) {
       navigate(`/index/${AuthService.getUserId()}`);
@@ -31,15 +29,13 @@ function Login() {
 
       AuthService.login({ token, userId, firstname, role });
 
-      //délai pour montrer le spinner pendant 1s
       setTimeout(() => navigate(`/index/${userId}`), 1000);
     } catch (err) {
       setError(err.response?.data?.error || "Erreur serveur inattendue.");
-      setLoading(false); // stop loader si erreur
+      setLoading(false);
     }
   };
 
-  //affiche le spinner
   if (loading) return <Loading />;
 
   return (
@@ -58,6 +54,9 @@ function Login() {
           </div>
           <button type="submit" className="btn btn-dark w-100">Se connecter</button>
         </form>
+        <div className="text-center mt-2">
+          <a href="/forgot-password" className="btn btn-primary fw-bold text-white">Mot de passe oublié ?</a>
+        </div>
         <div className="text-center mt-3">
           <a href="/register" className="text-decoration-none">Créer un compte</a>
         </div>

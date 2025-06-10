@@ -48,7 +48,7 @@ const Register = () => {
       const res = await axios.post("http://localhost:8082/api/auth/register", user);
       const userId = res.data;
       setTimeout(() => {
-        navigate(`/index/${userId}`);
+        navigate(`/login`);
       }, 1500);
     } catch (err) {
       alert("Erreur : " + (err.response?.data || err.message));
@@ -92,7 +92,6 @@ const Register = () => {
               I have read and agree to the terms
             </label>
           </div>
-
           <button type="submit" className="btn btn-register w-100 text-white mb-3" style={{ backgroundColor: '#3b6efb' }}>
             SIGN UP
           </button>
